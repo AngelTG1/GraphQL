@@ -1,8 +1,8 @@
 const express = require('express')
-const {graphqlHTTP} = require('express-graphql')
-const schema = require('./graphql/schema.js')
-const { connectDB } = require("./db")
-const { authenticate } = require("./middlewares/auth.js")
+const { graphqlHTTP } = require('express-graphql')
+const schema = require('./src/graphql/schema.js')
+const { connectDB } = require("./src/db/index.js")
+const { authenticate } = require("./src/middlewares/auth.js")
 
 const port = process.env.PORT ?? 3000
 
@@ -12,7 +12,7 @@ const app = express();
 app.use(authenticate)
 
 app.get('/', (req, res) => {
-    res.send("welcome to my graphql")
+    res.send("welcome to graphql")
 })
 
 app.use('/graphql', graphqlHTTP({
